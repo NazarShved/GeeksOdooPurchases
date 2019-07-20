@@ -2,6 +2,8 @@ package test;
 
 import com.github.javafaker.Faker;
 import com.pages.PurchasesPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -9,6 +11,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilities.Conditions;
+import utilities.ConsAPI;
 import utilities.DriverSetup;
 
 import java.util.List;
@@ -42,5 +45,6 @@ public class Nazar extends BaseTest{
 
     }
 
-
 }
+
+

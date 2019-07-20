@@ -1,6 +1,8 @@
 package utilities;
 
 import com.google.common.base.Function;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,11 +19,13 @@ public abstract class ConsAPI {
     public ConsAPI(){
         config = new Config("config.properties");
         wait = new WebDriverWait(getWebDriver(), 7);
+        log = LogManager.getLogger(ConsAPI.class.getName());
     }
 
     public abstract WebDriver getWebDriver();
     public static WebDriverWait wait;
     public static Config config;
+    public static Logger log;
 
     //Loggs in when on ligin page
     public void login(){
