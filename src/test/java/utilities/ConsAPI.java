@@ -16,22 +16,25 @@ import static utilities.Conditions.*;
 
 public abstract class ConsAPI {
 
+    public abstract WebDriver getWebDriver();
+
+
+    public static WebDriverWait wait;
+    public static Config config;
+    public static Logger log;
+
     public ConsAPI(){
         config = new Config("config.properties");
         wait = new WebDriverWait(getWebDriver(), 7);
         log = LogManager.getLogger(ConsAPI.class.getName());
     }
 
-    public abstract WebDriver getWebDriver();
-    public static WebDriverWait wait;
-    public static Config config;
-    public static Logger log;
+
 
     //Loggs in when on ligin page
-    public void login(){
-        $("#login").sendKeys(config.getProperty("user1Login"));
-        $("#password").sendKeys(config.getProperty("user1Pswd"));
-        $(".btn.btn-primary").click();
+    public void login(By loginField, By passwordField){
+        inputToAfield(loginField ,config.getProperty("user1Login") );
+        inputToAfield(passwordField, (config.getProperty("user1Pswd")));
     }
 
     //opens an inputed website
@@ -94,12 +97,6 @@ public abstract class ConsAPI {
 
     }
 
-
-    // can Use it instead of assert but you have to give parametr ExpectedConditions.(find the mathching condition);
-    public  <V> V assertThat(Function<? super WebDriver, V> condition){
-        return wait.until(condition);
-    }
-
     public void inputToAfield(By by, String text) {
         $(by).sendKeys(text);
         $(by).sendKeys(Keys.ENTER);
@@ -110,5 +107,12 @@ public abstract class ConsAPI {
         wait.until(ExpectedConditions.elementToBeClickable(checkForVis));
         $(by).sendKeys(Keys.ENTER);
     }
+
+    // can Use it instead of assert but you have to give parametr ExpectedConditions.(find the mathching condition);
+    public  <V> V assertThat(Function<? super WebDriver, V> condition){
+        return wait.until(condition);
+    }
+
+
 
 }

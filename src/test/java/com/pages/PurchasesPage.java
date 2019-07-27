@@ -54,7 +54,7 @@ public class PurchasesPage extends BasePage {
     //opens website logs in, and navigates to purchases module
     public  void goToPurchases(){
         visit();
-        login();
+        login(byCss("#login"), byCss("#password"));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(byCss(".o_loading")));
         $get(By.className("oe_menu_text"),8).click();
 
