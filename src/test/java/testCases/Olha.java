@@ -1,5 +1,6 @@
 package testCases;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,7 +23,8 @@ public class Olha extends BaseTest{
         inputToAfield(byXpath("(//input[@class='o_input ui-autocomplete-input'])[4]"), itName,  byXpath("//*[@class='ui-menu-item ui-state-focus']"));
         $x(purchases.saveButton).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(byCss(".o_loading")));
-        String result = $x("//td[@class='o_data_cell']").getText();
+        WebElement check = $x("//td[@class='o_data_cell']");
+        String result = check.getText();
         Assert.assertTrue(result.contains(itName));
     }
 }
